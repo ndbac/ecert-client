@@ -1,3 +1,5 @@
+import Image from "next/Image";
+
 function Footer() {
   return (
     <section className="pt-10 pb-5 lg:pt-20 lg:pb-10">
@@ -135,11 +137,13 @@ function Footer() {
               className="inline-block mb-6 text-gray-900 text-lg font-semibold"
               href="#"
             >
-              <img
+              <Image
                 className="h-7"
-                src="zeus-assets/logo/logo-zeus-red.svg"
+                src="/images/logo/logo-zeus-red.svg"
                 alt=""
-                width="auto"
+                width="100%"
+                height="100%"
+                objectFit="contain"
               />
             </a>
             <p className="hidden lg:block text-sm text-gray-500">
@@ -154,7 +158,6 @@ function Footer() {
               >
                 <svg
                   className="text-gray-500"
-                  width="7"
                   height="12"
                   viewBox="0 0 7 12"
                   fill="none"
