@@ -1,10 +1,15 @@
 import type { NextPage } from "next";
+import Navbar from "../components/Navigation/Navbar";
+import Footer from "../components/Footer/Footer";
+import Header from "../components/Header/Header";
 
 const Home: NextPage = () => {
   return (
-    <div className="bg-slate-800">
-      <h1 className="text-white">Init repository</h1>
-    </div>
+    <>
+      <Navbar />
+      <Header />
+      <Footer />
+    </>
   );
 };
 
