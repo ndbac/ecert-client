@@ -1,6 +1,6 @@
 function Footer() {
   return (
-    <section className="py-10 lg:py-20">
+    <section className="pt-10 pb-5 lg:pt-20 lg:pb-10">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap -mx-4 pb-6 lg:pb-20 border-b">
           <div className="w-full lg:w-3/5 px-4">
