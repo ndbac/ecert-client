@@ -1,4 +1,5 @@
 import Image from "next/Image";
+import Link from "next/link";
 import { useState } from "react";
 
 function Navbar() {
@@ -44,6 +45,7 @@ function Navbar() {
     <section className="pb-8 px-4 xl:px-10">
       <nav className="relative">
         <div className="flex justify-between items-center">
+          <Link href="/">
           <a className="text-lg font-medium" href="#">
             <Image
               src="/images/logo/logo-zeus-red.svg"
@@ -53,6 +55,7 @@ function Navbar() {
               objectFit="contain"
             />
           </a>
+          </Link>
           <div className="lg:hidden">
             <button
               className="navbar-burger flex items-center p-3 hover:bg-gray-50 rounded"
@@ -91,18 +94,22 @@ function Navbar() {
             </li>
           </ul>
           <div className="hidden lg:block">
-            <a
-              className="inline-block mr-2 py-3 px-8 text-sm leading-normal rounded border font-medium"
-              href="#"
-            >
-              Log in
-            </a>
-            <a
-              className="inline-block py-3 px-8 text-sm text-white font-medium leading-normal bg-red-400 hover:bg-red-300 rounded transition duration-200"
-              href="#"
-            >
-              Sign Up
-            </a>
+            <Link href="/login">
+              <a
+                className="inline-block mr-2 py-3 px-8 text-sm leading-normal rounded border font-medium"
+                href="#"
+              >
+                Log in
+              </a>
+            </Link>
+            <Link href="/register">
+              <a
+                className="inline-block py-3 px-8 text-sm text-white font-medium leading-normal bg-red-400 hover:bg-red-300 rounded transition duration-200"
+                href="#"
+              >
+                Sign Up
+              </a>
+            </Link>
           </div>
         </div>
       </nav>
