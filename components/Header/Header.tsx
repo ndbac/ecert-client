@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import Image from "next/Image";
 
 function Header() {
@@ -33,7 +34,7 @@ function Header() {
       </div>
       <div className="relative container pt-12 px-4 mx-auto text-center">
         <span className="text-blue-400 font-semibold">
-          What&apos;s new at Shuffle
+          What's new at Shuffle
         </span>
         <h2 className="mt-8 mb-8 lg:mb-12 text-4xl lg:text-6xl font-semibold">
           Take care of your performance every day.
