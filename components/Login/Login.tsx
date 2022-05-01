@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,7 +22,6 @@ function Login() {
       password: "",
     },
     onSubmit: (values) => {
-      console.log(values);
       dispatch(loginUserAction(values));
     },
     validationSchema: formSchema,
@@ -29,7 +29,12 @@ function Login() {
   const store = useSelector<RootState>(
     (state) => state.userReducer
   ) as UsersState;
-  const { userAuth, loading } = store;
+  const { userAuth, loading, serverErr } = store;
+  
+  const router = useRouter();
+  if (userAuth) {
+    router.push(`/user/${userAuth.id}`);
+  }
 
   return (
     <section className="relative py-20 bg-gray-50">
@@ -57,6 +62,11 @@ function Login() {
                 <h3 className="mb-12 text-3xl font-semibold font-heading">
                   Join our community
                 </h3>
+                {serverErr && (
+                  <span className="inline-block mb-8 text-xs text-red-400 font-semibold">
+                    Email or password is not correct
+                  </span>
+                )}
                 <div className="relative flex flex-wrap mb-6">
                   <input
                     value={formik.values.email}
