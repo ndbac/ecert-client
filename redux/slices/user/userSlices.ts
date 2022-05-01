@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 import { UsersState, IIamUser, IUserLogin } from "../../interface/user/user.interface";
 import baseUrl from "../../../utils/baseUrl";
@@ -7,23 +7,27 @@ import baseUrl from "../../../utils/baseUrl";
 export const loginUserAction = createAsyncThunk(
     "user/login",
     async (userData: IUserLogin, { rejectWithValue, getState, dispatch }) => {
-        console.log(userData, baseUrl);
         const config = {
             headers: {
                 "Content-Type": "application/json",
             },
         };
         try {
-            console.log(`${baseUrl}/auth/login`);
             const { data } = await axios.put<IIamUser>(
                 `${baseUrl}/auth/login`,
                 userData,
                 config
             );
             localStorage.setItem("token", data.token.access_token);
-            return data.token.access_token;
+            localStorage.setItem("id", data.id);
+            return data;
         } catch (error) {
-            return rejectWithValue(error);
+            const err = error as AxiosError | Error;
+            if (axios.isAxiosError(err)) {
+                return rejectWithValue(err?.response?.data);
+            } else {
+                return rejectWithValue(err);
+            }
         }
     }
 );
@@ -39,8 +43,10 @@ const userSlices = createSlice({
         builder.addCase(loginUserAction.fulfilled, (state, action) => {
             state.userAuth = action?.payload;
             state.loading = false;
+            state.serverErr = undefined;
         });
         builder.addCase(loginUserAction.rejected, (state, action) => {
+            state.serverErr = action?.error?.message;
             state.loading = false;
         });
     },
