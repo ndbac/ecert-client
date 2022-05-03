@@ -1,10 +1,10 @@
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUserAction } from "../../redux/slices/user/userSlices";
-import { AppDispatch, RootState } from "../../redux/interface/common.interface";
-import { UsersState } from "../../redux/interface/user/user.interface";
+import { loginUserAction } from "../../redux/authModule/slices/authSlices";
+import { AppDispatch, RootState } from "../../redux/common/common.interface";
+import { AuthState } from "../../redux/authModule/interfaces/auth.interface";
 
 const formSchema = Yup.object({
   email: Yup.string()
@@ -27,10 +27,10 @@ function Login() {
     validationSchema: formSchema,
   });
   const store = useSelector<RootState>(
-    (state) => state.userReducer
-  ) as UsersState;
+    (state) => state.authReducer
+  ) as AuthState;
   const { userAuth, loading, serverErr } = store;
-  
+
   const router = useRouter();
   if (userAuth) {
     router.push(`/user/${userAuth.id}`);
@@ -67,7 +67,10 @@ function Login() {
                     Email or password is not correct
                   </span>
                 )}
-                <div className="relative flex flex-wrap mb-6">
+                <span className="inline-block mb-4 text-xs text-red-400 font-semibold">
+                  {formik.touched.email && formik.errors.email}
+                </span>
+                <div className="relative flex flex-wrap mb-2">
                   <input
                     value={formik.values.email}
                     onChange={formik.handleChange("email")}
@@ -80,6 +83,9 @@ function Login() {
                     Your email address
                   </span>
                 </div>
+                <span className="inline-block mb-4 text-xs text-red-400 font-semibold">
+                {formik.touched.password && formik.errors.password}
+                </span>
                 <div className="relative flex flex-wrap mb-6">
                   <input
                     value={formik.values.password}

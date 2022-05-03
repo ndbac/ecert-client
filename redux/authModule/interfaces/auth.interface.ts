@@ -1,3 +1,5 @@
+import { IamNamespace } from '../../common/common.interface';
+
 export interface IIamUser {
     id: string;
     token: {
@@ -6,10 +8,18 @@ export interface IIamUser {
     }
 }
 
-export interface UsersState {
+export interface AuthState {
     userAuth: IIamUser;
+    registered: boolean;
     loading: boolean;
     serverErr: string | undefined;
+}
+
+export interface IUserRegister {
+    email: string;
+    namespace: IamNamespace;
+    password: string;
+    name: string;
 }
 
 export interface IUserLogin {
