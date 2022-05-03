@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
 import { useRouter } from "next/router";
 import { useFormik } from "formik";
-import { AppDispatch, RootState } from "../../redux/common/common.interface";
-import { registerUserAction } from "../../redux/authModule/slices/authSlices";
-import { IamNamespace } from "../../redux/common/common.interface";
-import { AuthState } from "../../redux/authModule/interfaces/auth.interface";
+import { AppDispatch, RootState } from "../../redux/modules/common/common.interface";
+import { registerUserAction } from "../../redux/modules/authModule/slices/authSlices";
+import { IamNamespace } from "../../redux/modules/common/common.interface";
+import { AuthState } from "../../redux/modules/authModule/interfaces/auth.interface";
 
 const formSchema = Yup.object({
   name: Yup.string()

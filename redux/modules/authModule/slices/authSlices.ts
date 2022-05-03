@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
 
 import { AuthState, IIamUser, IUserLogin, IUserRegister } from "../interfaces/auth.interface";
-import baseUrl from "../../../utils/baseUrl";
+import baseUrl from "../../../../utils/baseUrl";
 
 export const loginUserAction = createAsyncThunk(
     "auth/login",

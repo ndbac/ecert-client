@@ -2,9 +2,9 @@ import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUserAction } from "../../redux/authModule/slices/authSlices";
-import { AppDispatch, RootState } from "../../redux/common/common.interface";
-import { AuthState } from "../../redux/authModule/interfaces/auth.interface";
+import { loginUserAction } from "../../redux/modules/authModule/slices/authSlices";
+import { AppDispatch, RootState } from "../../redux/modules/common/common.interface";
+import { AuthState } from "../../redux/modules/authModule/interfaces/auth.interface";
 
 const formSchema = Yup.object({
   email: Yup.string()
