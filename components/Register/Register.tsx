@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
 import { useRouter } from "next/router";
 import { useFormik } from "formik";
-import { AppDispatch, RootState } from "../../redux/modules/common/common.interface";
+import {
+  AppDispatch,
+  RootState,
+} from "../../redux/modules/common/common.interface";
 import { registerUserAction } from "../../redux/modules/authModule/slices/authSlices";
 import { IamNamespace } from "../../redux/modules/common/common.interface";
 import { AuthState } from "../../redux/modules/authModule/interfaces/auth.interface";
@@ -105,6 +108,36 @@ function Register() {
                     Account already exists. Please create a new account
                   </span>
                 )}
+                <div className="text-left mb-2">
+                  <div className="relative border rounded">
+                    <span className="absolute top-0 left-0 ml-4 -mt-2 px-1 inline-block bg-white text-gray-500 text-xs">
+                      Account type
+                    </span>
+                    <select
+                      className="appearance-none w-full p-3 text-sm leading-none rounded outline-none my-1.5 px-4"
+                      name="field-name"
+                      value={formik.values.namespace}
+                      onChange={formik.handleChange("namespace")}
+                      onBlur={formik.handleBlur("namespace")}
+                    >
+                      <option className="text-md" value={IamNamespace.PROJECT}>
+                        Organization
+                      </option>
+                      <option className="text-md" value={IamNamespace.USER}>
+                        User
+                      </option>
+                    </select>
+                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                      <svg
+                        className="fill-current h-4 w-4"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"></path>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
                 <span className="inline-block mb-4 text-xs text-red-400 font-semibold">
                   {formik.touched.email && formik.errors.email}
                 </span>
@@ -131,10 +164,10 @@ function Register() {
                     onBlur={formik.handleBlur("name")}
                     className="relative mb-2 md:mb-0 w-full py-4 pl-4 text-sm border rounded"
                     type="text"
-                    placeholder="e.g Patrick"
+                    placeholder="e.g eCert Project"
                   />
                   <span className="absolute top-0 left-0 ml-4 -mt-2 px-1 inline-block bg-white text-gray-500 text-xs">
-                    Name
+                    Name / Organization
                   </span>
                 </div>
                 <span className="inline-block mb-4 text-xs text-red-400 font-semibold">
