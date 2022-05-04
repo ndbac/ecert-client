@@ -211,11 +211,11 @@ function Register() {
                     value="1"
                   />
                   <span className="-mt-1 inline-block text-sm text-gray-500">
-                    By signing up, you agree to our{" "}
+                    By signing up, you agree to our
                     <a className="text-red-400 hover:underline" href="#">
                       Terms, Data Policy
-                    </a>{" "}
-                    and{" "}
+                    </a>
+                    and
                     <a className="text-red-400 hover:underline" href="#">
                       Cookies Policy
                     </a>
