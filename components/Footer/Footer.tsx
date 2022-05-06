@@ -4,7 +4,7 @@ function Footer() {
   return (
     <section className="pt-10 pb-5 lg:pt-20 lg:pb-10">
       <div className="container mx-auto px-4">
-        <div className="flex flex-wrap -mx-4 pb-6 lg:pb-20 border-b">
+        <div className="flex flex-wrap -mx-4 pb-6 pt-20 lg:pb-20 border-b border-t">
           <div className="w-full lg:w-3/5 px-4">
             <div className="flex flex-wrap -mx-4">
               <div className="w-1/2 lg:w-1/4 px-4 mb-4">
@@ -139,7 +139,7 @@ function Footer() {
             >
               <Image
                 className="h-7"
-                src="/images/logo/logo-zeus-red.svg"
+                src="/logo/logo-zeus-red.svg"
                 alt=""
                 width="100%"
                 height="100%"
