@@ -46,15 +46,15 @@ function Navbar() {
       <nav className="relative">
         <div className="flex justify-between items-center">
           <Link href="/">
-          <a className="text-lg font-medium" href="#">
-            <Image
-              src="/images/logo/logo-zeus-red.svg"
-              alt=""
-              width="100%"
-              height="100%"
-              objectFit="contain"
-            />
-          </a>
+            <a className="text-lg font-medium" href="#">
+              <Image
+                src="/logo/logo-zeus-red.svg"
+                alt=""
+                width="100%"
+                height="100%"
+                objectFit="contain"
+              />
+            </a>
           </Link>
           <div className="lg:hidden">
             <button
@@ -73,9 +73,11 @@ function Navbar() {
           </div>
           <ul className="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:w-auto lg:space-x-12">
             <li>
-              <a className="text-sm font-medium" href="#">
-                About
-              </a>
+              <Link href="/discovery">
+                <a className="text-sm font-medium" href="#">
+                  Discovery
+                </a>
+              </Link>
             </li>
             <li>
               <a className="text-sm font-medium" href="#">
@@ -119,7 +121,7 @@ function Navbar() {
           <div className="flex items-center mb-8">
             <a className="mr-auto text-2xl font-medium leading-none" href="#">
               <Image
-                src="/images/logo/logo-zeus-red.svg"
+                src="/logo/logo-zeus-red.svg"
                 alt=""
                 width="100%"
                 height="100%"

@@ -1,16 +1,16 @@
 import type { NextPage } from "next";
 import Navbar from "../components/Navigation/Navbar";
-import Login from "../components/Login/Login";
+import Discovery from "../components/Discovery/Discovery";
 import Footer from "../components/Footer/Footer";
 
-const LoginPage: NextPage = () => {
+const DiscoveryPage: NextPage = () => {
   return (
     <div className="max-w-screen-xl mx-auto">
       <Navbar />
-      <Login />
+      <Discovery />
       <Footer />
     </div>
   );
 };
 
-export default LoginPage;
+export default DiscoveryPage;
