@@ -1,4 +1,4 @@
-export interface IEmailSubscribers {
+export interface IEmailSend {
     from: string;
     to: string;
     subject: string;
