@@ -3,9 +3,9 @@ import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUserAction } from "../../redux/modules/authModule/slices/authSlices";
+import { loginUserAction } from "../../redux/modules/auth/slices/auth.slice";
 import { AppDispatch, RootState } from "../../redux/modules/common/common.interface";
-import { AuthState } from "../../redux/modules/authModule/interfaces/auth.interface";
+import { AuthState } from "../../redux/modules/auth/interfaces/auth.interface";
 
 import Placeholder1 from "../../public/images/placeholder1.png";
 import Placeholder2 from "../../public/images/placeholder2.png";

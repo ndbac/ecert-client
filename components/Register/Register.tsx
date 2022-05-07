@@ -8,9 +8,9 @@ import {
   AppDispatch,
   RootState,
 } from "../../redux/modules/common/common.interface";
-import { registerUserAction } from "../../redux/modules/authModule/slices/authSlices";
+import { registerUserAction } from "../../redux/modules/auth/slices/auth.slice";
 import { IamNamespace } from "../../redux/modules/common/common.interface";
-import { AuthState } from "../../redux/modules/authModule/interfaces/auth.interface";
+import { AuthState } from "../../redux/modules/auth/interfaces/auth.interface";
 
 import ShadowBlueFull from "../../public/elements/shadow-blue-full.svg";
 import Ellipse from "../../public/elements/ellipse.svg";
