@@ -50,7 +50,7 @@ function Header() {
         <div className="absolute top-1/2 left-0 mt-40 rounded-full h-20 md:h-160 w-80 md:w-160">
           <Image className="object-contain transform scale-200" src={ShadowLight7} alt="" />
         </div>
-        <div className="absolute top-30 left-0 -mt-40 ml-40 transform -translate-x-1/2 rotate-45 clip-path">
+        <div className="absolute hidden md:block top-30 left-0 -mt-40 ml-40 transform -translate-x-1/2 rotate-45 clip-path">
           <Image className="h-full transform -rotate-45 object-cover" src={PhotoWomen2} alt="" />
         </div>
       </div>

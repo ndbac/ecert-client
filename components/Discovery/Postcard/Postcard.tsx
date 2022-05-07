@@ -1,4 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
+import Link from "next/link";
+
 function Postcard() {
     return (
         <div className="w-full md:w-1/2 lg:w-1/3 p-3">
@@ -17,9 +19,11 @@ function Postcard() {
                 <span className="inline-block mb-4 text-xs text-white">
                     10 jun 2020 19:40
                 </span>
-                <h2 className="text-white mb-4 text-2xl font-semibold font-heading">
-                    Lorem ipsum dolor sit amet consectutar
-                </h2>
+                <Link href="/post/postId" passHref>
+                    <h2 className="text-white mb-4 text-2xl font-semibold font-heading cursor-pointer">
+                        Lorem ipsum dolor sit amet consectutar
+                    </h2>
+                </Link>
                 <p className="mb-4 text-white leading-relaxed">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Pellentesque massa nibh, pulvinar vitae aliquet nec, accumsan
