@@ -1,107 +1,127 @@
 /* eslint-disable react/no-unescaped-entities */
 import Image from "next/image";
 
+import ShadowBlueFull from "../../../public/elements/shadow-blue-full.svg";
+import Ellipse from "../../../public/elements/ellipse.svg";
+
 function HowItWork() {
   return (
-    <section className="py-20">
-      <div className="container px-4 mx-auto">
-        <div className="flex flex-wrap -mx-4 items-center mb-12 lg:mb-20">
-          <div className="w-full lg:w-1/2 px-4 mb-10 lg:mb-0">
-            <span className="text-xs text-blue-400 font-semibold">
-              What's new at Shuffle
-            </span>
-            <h2 className="mt-8 mb-10 text-4xl font-semibold font-heading">
-              Lorem ipsum dolor sit amet consectutar domor at elis
-            </h2>
-            <p className="text-xl text-gray-500">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Pellentesque massa nibh, pulvinar vitae aliquet nec, accumsan
-              aliquet orci.
-            </p>
-          </div>
-          <div className="relative w-full lg:w-1/2 px-4 mx-5 md:mx-0">
-            <div className="h-80 lg:h-128 mt-20 w-full">
-              <Image
-                src="https://images.unsplash.com/photo-1525130413817-d45c1d127c42?ixlib=rb-1.2.1&amp;ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&amp;auto=format&amp;fit=crop&amp;w=1050&amp;q=80"
-                alt=""
-                layout="fill"
-                className="rounded-xl object-cover"
-              />
+    <section className="relative pt-32 bg-black pb-20">
+      <div className="container mx-auto px-4 mb-24">
+        <div className="flex flex-wrap -mx-4">
+          <div className="w-full md:w-1/2 px-4 mb-10 md:mb-0">
+            <div className="relative md:max-w-md">
+              <h2 className="mb-6 text-3xl text-white uppercase font-heading">
+                Increase your brand's regular profit
+              </h2>
+              <p className="mb-8 text-gray-500">
+                If you have ever wondered how to develop your brand, this is the
+                place for you. Take a big step forward in growing your business
+                with this great tool.
+              </p>
+              <div className="relative">
+                <div className="absolute top-0 left-0 transform ml-24 -translate-y-1/2 scale-200 opacity-50">
+                  <Image src={ShadowBlueFull} alt="" />
+                </div>
+                <div className="relative flex flex-wrap">
+                  <a
+                    className="inline-flex justify-center w-full md:w-auto mb-6 lg:mb-0 md:mr-8 items-center py-4 px-6 rounded-full bg-yellow-300 hover:bg-yellow-400 transform duration-200"
+                    href="#"
+                  >
+                    <svg
+                      className="mr-3"
+                      width="16"
+                      height="9"
+                      viewBox="0 0 16 9"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M12.01 3.16553H0V5.24886H12.01V8.37386L16 4.20719L12.01 0.0405273V3.16553Z"
+                        fill="black"
+                      ></path>
+                    </svg>
+                    <span className="text-sm font-heading">Activate demo</span>
+                  </a>
+                  <a
+                    className="inline-flex ml-auto md:ml-0 items-center text-white hover:underline"
+                    href="#"
+                  >
+                    <span className="mr-2 text-sm font-heading">
+                      Share with friends
+                    </span>
+                    <svg
+                      width="16"
+                      height="10"
+                      viewBox="0 0 16 10"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M12.01 3.95383H0V6.04614H12.01V9.1846L16 4.99998L12.01 0.815369V3.95383Z"
+                        fill="#FFEC3E"
+                      ></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
             </div>
+          </div>
+          <div className="w-full md:w-1/2 px-4">
+            <ul>
+              <li className="flex flex-wrap items-center mb-6">
+                <div className="relative flex mr-4 items-center justify-center h-32 w-32">
+                  <div className="absolute top-0 left-0 w-full h-full">
+                    <Image src={Ellipse} alt="" />
+                  </div>
+                  <span className="text-yellow-300">1</span>
+                </div>
+                <div className="w-full lg:w-2/3">
+                  <h3 className="mb-4 text-2xl text-white font-heading">
+                    Spectacular team plan
+                  </h3>
+                  <p className="text-lg text-gray-500">
+                    Fairly assigning daily tasks to your employees take a big
+                    step forward in growing.
+                  </p>
+                </div>
+              </li>
+              <li className="flex flex-wrap items-center mb-6">
+                <div className="relative flex mr-4 items-center justify-center h-32 w-32">
+                  <div className="absolute top-0 left-0 w-full h-full">
+                    <Image src={Ellipse} alt="" />
+                  </div>
+                  <span className="text-yellow-300">2</span>
+                </div>
+                <div className="w-full lg:w-2/3">
+                  <h3 className="mb-4 text-2xl text-white font-heading">
+                    Change of access
+                  </h3>
+                  <p className="text-lg text-gray-500">
+                    Fairly assigning daily tasks to your employees take a big
+                    step forward in growing.
+                  </p>
+                </div>
+              </li>
+              <li className="flex flex-wrap items-center">
+                <div className="relative flex mr-4 items-center justify-center h-32 w-32">
+                  <div className="absolute top-0 left-0 w-full h-full">
+                    <Image src={Ellipse} alt="" />
+                  </div>
 
-            <div className="absolute inset-0 flex items-center justify-center">
-              <button className="inline-block w-20 h-20 bg-red-400 hover:bg-red-300 rounded-full">
-                <svg
-                  className="mx-auto"
-                  width="11"
-                  height="16"
-                  viewBox="0 0 11 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M0 13V3C0 1.35191 1.88153 0.411145 3.2 1.4L9.86667 6.4C10.9333 7.2 10.9333 8.8 9.86667 9.6L3.2 14.6C1.88153 15.5889 0 14.6481 0 13Z"
-                    fill="white"
-                  ></path>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-wrap items-center -mx-4">
-          <div className="w-full md:w-1/2 lg:w-1/3 py-6 px-4 flex items-start">
-            <span className="flex-shrink-0 inline-flex items-center justify-center w-12 h-12 mr-6 bg-blue-400 rounded-full text-white">
-              1
-            </span>
-            <p className="text-xl text-gray-500">
-              Etiam pellentesque non nibh non pulvinar. Mauris posuere, tellus
-              sit amet tempus.
-            </p>
-          </div>
-          <div className="w-full md:w-1/2 lg:w-1/3 py-6 px-4 flex items-start">
-            <span className="flex-shrink-0 inline-flex items-center justify-center w-12 h-12 mr-6 bg-teal-400 rounded-full text-white">
-              2
-            </span>
-            <p className="text-xl text-gray-500">
-              Etiam pellentesque non nibh non pulvinar. Mauris posuere, tellus
-              sit amet tempus.
-            </p>
-          </div>
-          <div className="w-full md:w-1/2 lg:w-1/3 py-6 px-4 flex items-start">
-            <span className="flex-shrink-0 inline-flex items-center justify-center w-12 h-12 mr-6 bg-red-400 rounded-full text-white">
-              3
-            </span>
-            <p className="text-xl text-gray-500">
-              Etiam pellentesque non nibh non pulvinar. Mauris posuere, tellus
-              sit amet tempus.
-            </p>
-          </div>
-          <div className="w-full md:w-1/2 lg:w-1/3 py-6 px-4 flex items-start">
-            <span className="flex-shrink-0 inline-flex items-center justify-center w-12 h-12 mr-6 bg-yellow-400 rounded-full text-white">
-              4
-            </span>
-            <p className="text-xl text-gray-500">
-              Etiam pellentesque non nibh non pulvinar. Mauris posuere, tellus
-              sit amet tempus.
-            </p>
-          </div>
-          <div className="w-full md:w-1/2 lg:w-1/3 py-6 px-4 flex items-start">
-            <span className="flex-shrink-0 inline-flex items-center justify-center w-12 h-12 mr-6 bg-orange-400 rounded-full text-white">
-              5
-            </span>
-            <p className="text-xl text-gray-500">
-              Etiam pellentesque non nibh non pulvinar. Mauris posuere, tellus
-              sit amet tempus.
-            </p>
-          </div>
-          <div className="w-full md:w-1/2 lg:w-1/3 py-6 px-4 flex items-start">
-            <span className="flex-shrink-0 inline-flex items-center justify-center w-12 h-12 mr-6 bg-gray-900 rounded-full text-white">
-              6
-            </span>
-            <p className="text-xl text-gray-500">
-              Etiam pellentesque non nibh non pulvinar. Mauris posuere, tellus
-              sit amet tempus.
-            </p>
+                  <span className="text-yellow-300">3</span>
+                </div>
+                <div className="w-full lg:w-2/3">
+                  <h3 className="mb-4 text-2xl text-white font-heading">
+                    List of regular users
+                  </h3>
+                  <p className="text-lg text-gray-500">
+                    Fairly assigning daily tasks to your employees take a big
+                    step forward in growing.
+                  </p>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
