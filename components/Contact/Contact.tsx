@@ -75,7 +75,7 @@ function Contact() {
                     name="firstName"
                     onChange={formik.handleChange("firstName")}
                     value={formik.values.firstName}
-                    onBlur={formik.handleBlur} />
+                    onBlur={formik.handleBlur("firstName")} />
                   <p className="mb-2 ml-6 text-yellow-600 font-semibold"> {formik.touched.firstName && formik.errors.firstName} </p>
                 </div>
                 <div className="w-full lg:w-auto pl-2">
@@ -86,7 +86,7 @@ function Contact() {
                     name="lastName"
                     onChange={formik.handleChange("lastName")}
                     value={formik.values.lastName}
-                    onBlur={formik.handleBlur} />
+                    onBlur={formik.handleBlur("lastName")} />
                   <p className="mb-2 ml-6 text-yellow-600 font-semibold"> {formik.touched.lastName && formik.errors.lastName} </p>
                 </div>
               </div>
@@ -98,7 +98,7 @@ function Contact() {
                   name="from"
                   onChange={formik.handleChange("from")}
                   value={formik.values.from}
-                  onBlur={formik.handleBlur}
+                  onBlur={formik.handleBlur("from")}
                 />
                 <p className="mb-2 ml-6 text-yellow-600 font-semibold"> {formik.touched.from && formik.errors.from}</p>
               </div>
@@ -110,7 +110,7 @@ function Contact() {
                   name="text"
                   onChange={formik.handleChange("text")}
                   value={formik.values.text}
-                  onBlur={formik.handleBlur} />
+                  onBlur={formik.handleBlur("text")} />
                 <p className="mb-2 ml-6 text-yellow-600 font-semibold"> {formik.touched.text && formik.errors.text} </p>
               </div>
               <div className="pt-6">
