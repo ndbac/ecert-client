@@ -1,12 +1,38 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
 
-import { IEmailSubscribers, NotificationState} from "../interfaces/notification.interface";
+import { IEmailSubscribers, NotificationState, IEmailSend} from "../interfaces/notification.interface";
 import baseUrl from "../../../../utils/baseUrl";
 
 export const userSubscribeForNews = createAsyncThunk(
     "notification/subscribe",
     async (emailData: IEmailSubscribers, { rejectWithValue, getState, dispatch }) => {
+        console.log(emailData);
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        try {
+            const { data } = await axios.post(
+                `${baseUrl}/notification`,
+                emailData,
+                config
+            );
+            return data;
+        } catch (error) {
+            const err = error as AxiosError | Error;
+            if (axios.isAxiosError(err)) {
+                return rejectWithValue(err?.response?.data);
+            } else {
+                return rejectWithValue(err);
+            }
+        }
+    }
+);
+export const userSendEmail = createAsyncThunk(
+    "notification/subscribe",
+    async (emailData: IEmailSend, { rejectWithValue, getState, dispatch }) => {
         console.log(emailData);
         const config = {
             headers: {

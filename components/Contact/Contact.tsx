@@ -3,11 +3,11 @@ import Image from "next/image";
 import Map from "../../public/images/map1.png";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { useDispatch} from "react-redux";
-import { EEmailOption, EEmailType } from "../../redux/modules/notification/interfaces/notification.interface";
+import { useDispatch, useSelector} from "react-redux";
+import {NotificationState, EEmailOption, EEmailType } from "../../redux/modules/notification/interfaces/notification.interface";
 import { userSubscribeForNews } from "../../redux/modules/notification/slices/notification.slice";
-import { AppDispatch} from "../../redux/modules/common/common.interface";
-import { DEFAULT_EMAIL_ADDRESS, USER_EMAIL_HELP} from "../../utils/defaultValues";
+import { AppDispatch, RootState} from "../../redux/modules/common/common.interface";
+import { DEFAULT_EMAIL_ADDRESS, DEFAULT_EMAIL_CONTACT} from "../../utils/defaultValues";
 
 const formSchema = Yup.object({
   firstName: Yup.string()
@@ -25,7 +25,10 @@ const formSchema = Yup.object({
 
 function Contact() {
   const dispatch = useDispatch<AppDispatch>();
-
+  const store = useSelector<RootState>(
+    (state) => state.notiReducer
+  ) as NotificationState;
+  const { loading } = store;
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -34,17 +37,18 @@ function Contact() {
       text: ""
     },
     onSubmit: (values) => {
-        const message:string = `From ${values.firstName} ${values.lastName}: ${values.text}`
+        const message:string = `Name: ${values.firstName} ${values.lastName}\nEmail: ${values.from}\nInfo: ${values.text}`
         console.log(message);
         const data = {
           from : values.from,
           to: DEFAULT_EMAIL_ADDRESS,
-          subject: USER_EMAIL_HELP,
+          subject: DEFAULT_EMAIL_CONTACT,
           text: message,
           option: EEmailOption.TEXT,
           type: EEmailType.NOTIFICATION,
         }
         dispatch(userSubscribeForNews(data));
+        formik.resetForm(); 
     },
     validationSchema: formSchema,
   });
@@ -69,7 +73,7 @@ function Contact() {
                         placeholder="First name" 
                         id="firstName"
                         name="firstName"
-                        onChange={formik.handleChange}
+                        onChange={formik.handleChange("firstName")}
                         value = {formik.values.firstName}
                         onBlur = {formik.handleBlur}/>
                       <p className="mb-2 ml-6 text-yellow-600 font-semibold"> {formik.touched.firstName && formik.errors.firstName} </p>
@@ -80,7 +84,7 @@ function Contact() {
                         placeholder="Last name" 
                         id="lastName"
                         name="lastName"
-                        onChange={formik.handleChange}
+                        onChange={formik.handleChange("lastName")}
                         value = {formik.values.lastName}
                         onBlur = {formik.handleBlur}/>
                       <p className="mb-2 ml-6 text-yellow-600 font-semibold"> {formik.touched.lastName && formik.errors.lastName} </p>
@@ -92,7 +96,7 @@ function Contact() {
                         placeholder="Enter your email" 
                         id="from"
                         name="from"
-                        onChange={formik.handleChange}
+                        onChange={formik.handleChange("from")}
                         value = {formik.values.from}
                         onBlur = {formik.handleBlur}
                         />
@@ -104,13 +108,15 @@ function Contact() {
                             placeholder="What can we help you with?" 
                             id="text"
                             name="text"
-                            onChange={formik.handleChange}
+                            onChange={formik.handleChange("text")}
                             value = {formik.values.text}
                             onBlur = {formik.handleBlur}/>
                         <p className="mb-2 ml-6 text-yellow-600 font-semibold"> {formik.touched.text && formik.errors.text} </p>
                     </div>
                     <div className="pt-6">
-                        <button type="submit" className="px-6 py-4 text-sm font-semibold bg-yellow-400 hover:bg-yellow-500 rounded transition duration-200">Send Message</button>
+                        <button type="submit" className="px-6 py-4 text-sm font-semibold bg-yellow-600 hover:bg-yellow-500 rounded transition duration-200">
+                        <span className="mr-2">{loading ? 'Sending' : 'Send message'}</span>
+                        </button>
                     </div>
                   </div>
                 </form>

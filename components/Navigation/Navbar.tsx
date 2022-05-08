@@ -181,21 +181,23 @@ function Navbar() {
               </a>
             </li>
             <li>
-              <a className="flex items-center" href="#">
-                <span className="mr-3 text-lg text-white">Contact</span>
-                <svg
-                  width="16"
-                  height="9"
-                  viewBox="0 0 16 9"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M12.01 3.48047H0V5.57278H12.01V8.71124L16 4.52663L12.01 0.34201V3.48047Z"
-                    fill="#FFEC3E"
-                  ></path>
-                </svg>
-              </a>
+              <Link href="/contact">
+                <a className="flex items-center" href="#">
+                  <span className="mr-3 text-lg text-white">Contact</span>
+                  <svg
+                    width="16"
+                    height="9"
+                    viewBox="0 0 16 9"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12.01 3.48047H0V5.57278H12.01V8.71124L16 4.52663L12.01 0.34201V3.48047Z"
+                      fill="#FFEC3E"
+                    ></path>
+                  </svg>
+                </a>
+              </Link>
             </li>
           </ul>
           <Link href="/register">

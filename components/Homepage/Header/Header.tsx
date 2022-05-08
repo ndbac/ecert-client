@@ -32,6 +32,7 @@ function Header() {
     onSubmit: (values) => {
       values.text = `Subscriber email: ${values.from}`;
       dispatch(userSubscribeForNews(values));
+      formik.resetForm(); 
     },
     validationSchema: formSchema,
   });
