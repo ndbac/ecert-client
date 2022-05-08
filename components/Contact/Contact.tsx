@@ -1,10 +1,55 @@
 import ShadowBlueFull from "../../public/elements/shadow-blue-full.svg";
 import Image from "next/image";
 import Map from "../../public/images/map1.png";
+import * as Yup from "yup";
+import { useFormik } from "formik";
+import { useDispatch} from "react-redux";
+import { EEmailOption, EEmailType } from "../../redux/modules/notification/interfaces/notification.interface";
+import { userSubscribeForNews } from "../../redux/modules/notification/slices/notification.slice";
+import { AppDispatch} from "../../redux/modules/common/common.interface";
+import { DEFAULT_EMAIL_ADDRESS, USER_EMAIL_HELP} from "../../utils/defaultValues";
+
+const formSchema = Yup.object({
+  firstName: Yup.string()
+    .max(20, "Your first name must be lower than 30 characters")
+    .required("Please enter your first name"),
+  lastName: Yup.string()
+    .max(20, "Your last name must be lower than 30 characters")
+    .required("Please enter your last name"),
+  from: Yup.string()
+    .email("Your email is not valid")
+    .required("Please enter your email address"),
+  text: Yup.string()
+    .required("Please enter your message")
+});
+
 function Contact() {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const formik = useFormik({
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      from: "",
+      text: ""
+    },
+    onSubmit: (values) => {
+        const message:string = `From ${values.firstName} ${values.lastName}: ${values.text}`
+        console.log(message);
+        const data = {
+          from : values.from,
+          to: DEFAULT_EMAIL_ADDRESS,
+          subject: USER_EMAIL_HELP,
+          text: message,
+          option: EEmailOption.TEXT,
+          type: EEmailType.NOTIFICATION,
+        }
+        dispatch(userSubscribeForNews(data));
+    },
+    validationSchema: formSchema,
+  });
     return (
       <section className=" pt-20 bg-black ">
-  
             <div className="flex px-6 md:px-12 flex-wrap items-center justify-center">
               <div className="m-auto">
               <div className="text-center px-4 relative pb-10">
@@ -14,40 +59,61 @@ function Contact() {
                     <Image src={ShadowBlueFull} alt="" />
                   </div>
               </div>
-                <div className="px-4 pt-4">
+                <form onSubmit={formik.handleSubmit} className="px-4 pt-4">
                   <div className="text-white text-3xl text-center pt-6 pb-10 font-semibold">Send us a message!</div>
                   <div>
                     <div className="flex flex-wrap justify-between">
                       <div className="w-full lg:w-auto pr-2">
                         <div className="text-lg text-white md:text-gray-500 pl-4 pb-2">First Name:  </div>
-                        <input type="text" className="w-full lg:w-96 mb-4 py-4 px-10 bg-black rounded-full border text-white outline-none placeholder-white" placeholder="First name" />
+                        <input type="text" className="w-full lg:w-96 mb-4 py-4 px-10 bg-black rounded-full border text-white outline-none placeholder-white" 
+                        placeholder="First name" 
+                        id="firstName"
+                        name="firstName"
+                        onChange={formik.handleChange}
+                        value = {formik.values.firstName}
+                        onBlur = {formik.handleBlur}/>
+                      <p className="mb-2 ml-6 text-yellow-600 font-semibold"> {formik.touched.firstName && formik.errors.firstName} </p>
                       </div>
                       <div className="w-full lg:w-auto pl-2">
                         <div className="text-lg text-white md:text-gray-500 pl-4 pb-2">Last Name: </div>
-                        <input type="text" className="w-full lg:w-96 mb-4 py-4 px-10 bg-black rounded-full border text-white outline-none placeholder-white" placeholder="Last name" />
+                        <input type="text" className="w-full lg:w-96 mb-4 py-4 px-10 bg-black rounded-full border text-white outline-none placeholder-white" 
+                        placeholder="Last name" 
+                        id="lastName"
+                        name="lastName"
+                        onChange={formik.handleChange}
+                        value = {formik.values.lastName}
+                        onBlur = {formik.handleBlur}/>
+                      <p className="mb-2 ml-6 text-yellow-600 font-semibold"> {formik.touched.lastName && formik.errors.lastName} </p>
                       </div>
-                      
                     </div>
                     <div>
-                        <div className="text-lg text-white md:text-gray-500 pl-4 pb-2">Email: </div>
-                            <input type="text" className="w-full mb-4 py-4 px-10 bg-black rounded-full border text-white outline-none placeholder-white" placeholder="Enter your email" />
+                        <label className="text-lg text-white md:text-gray-500 pl-4 pb-2" htmlFor="email">Email: </label>
+                        <input type="text" className="w-full mb-4 py-4 px-10 bg-black rounded-full border text-white outline-none placeholder-white" 
+                        placeholder="Enter your email" 
+                        id="from"
+                        name="from"
+                        onChange={formik.handleChange}
+                        value = {formik.values.from}
+                        onBlur = {formik.handleBlur}
+                        />
+                         <p className="mb-2 ml-6 text-yellow-600 font-semibold"> {formik.touched.from && formik.errors.from}</p>
                     </div>
                     <div>
-                        <div className="text-lg text-white md:text-gray-500 pl-4 pb-2">Additional Details: </div>
-                            <textarea className="w-full mb-4 py-4 px-10 bg-black rounded-md border text-white outline-none placeholder-white" placeholder="What can we help you with?" />
+                        <label className="text-lg text-white md:text-gray-500 pl-4 pb-2" htmlFor="text">Additional Details: </label>
+                        <textarea className="w-full mb-4 py-4 px-10 bg-black rounded-md border text-white outline-none placeholder-white" 
+                            placeholder="What can we help you with?" 
+                            id="text"
+                            name="text"
+                            onChange={formik.handleChange}
+                            value = {formik.values.text}
+                            onBlur = {formik.handleBlur}/>
+                        <p className="mb-2 ml-6 text-yellow-600 font-semibold"> {formik.touched.text && formik.errors.text} </p>
                     </div>
-                    <label className="block mb-6" >
-                      <input type="checkbox" />
-                      <span className="text-sm text-white">
-                        <span>By signing up, you agree to our</span>
-                        <a className="text-blue-200 hover:underline" href="#"> Terms, Data Policy and Cookies Policy.</a>
-                      </span>
-                  </label>
                     <div className="pt-6">
-                        <a href="#" className="px-6 py-4 text-sm font-semibold bg-yellow-400 hover:bg-yellow-500 rounded transition duration-200">Send Message</a>
+                        <button type="submit" className="px-6 py-4 text-sm font-semibold bg-yellow-400 hover:bg-yellow-500 rounded transition duration-200">Send Message</button>
                     </div>
                   </div>
-                </div>
+                </form>
               </div>
             </div>
               <div className="text-center pt-20 relative">

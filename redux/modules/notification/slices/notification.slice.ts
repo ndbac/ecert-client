@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
 
-import { IEmailSubscribers, NotificationState } from "../interfaces/notification.interface";
+import { IEmailSubscribers, NotificationState} from "../interfaces/notification.interface";
 import baseUrl from "../../../../utils/baseUrl";
 
 export const userSubscribeForNews = createAsyncThunk(
@@ -30,6 +30,7 @@ export const userSubscribeForNews = createAsyncThunk(
         }
     }
 );
+
 
 const notificationSlices = createSlice({
     name: "notification",
