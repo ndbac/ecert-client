@@ -166,6 +166,7 @@ module.exports = {
     backgroundColor: (theme) => ({
       ...theme("colors"),
       body: "#fff",
+      DEFAULT: "rgba(255, 255, 255, 0.16)"
     }),
     backgroundImage: {
       none: "none",
