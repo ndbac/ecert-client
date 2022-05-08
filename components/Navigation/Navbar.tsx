@@ -40,11 +40,11 @@ function Navbar() {
               </a>
             </li>
             <li>
-            <Link href="/contact">
-              <a className="text-gray-500 hover:text-gray-400" href="#">
-                Contact
-              </a>
-            </Link>
+              <Link href="/contact">
+                <a className="text-gray-500 hover:text-gray-400" href="#">
+                  Contact
+                </a>
+              </Link>
             </li>
           </ul>
         </div>

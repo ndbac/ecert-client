@@ -1,13 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
 
-import { NotificationState, IEmailSend} from "../interfaces/notification.interface";
+import { NotificationState, IEmailSend } from "../interfaces/notification.interface";
 import baseUrl from "../../../../utils/baseUrl";
 
 export const userSendEmail = createAsyncThunk(
     "notification/mail",
     async (emailData: IEmailSend, { rejectWithValue, getState, dispatch }) => {
-        console.log(emailData);
         const config = {
             headers: {
                 "Content-Type": "application/json",
