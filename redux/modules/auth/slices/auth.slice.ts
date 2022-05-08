@@ -35,7 +35,6 @@ export const loginUserAction = createAsyncThunk(
 export const registerUserAction = createAsyncThunk(
     "auth/register",
     async (userData: IUserRegister, { rejectWithValue, getState, dispatch }) => {
-        console.log(userData);
         const config = {
             headers: {
                 "Content-Type": "application/json",
