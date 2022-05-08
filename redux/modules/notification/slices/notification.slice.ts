@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
 
-import { IEmailSubscribers, NotificationState } from "../interfaces/notification.interface";
+import { NotificationState, IEmailSend} from "../interfaces/notification.interface";
 import baseUrl from "../../../../utils/baseUrl";
 
-export const userSubscribeForNews = createAsyncThunk(
-    "notification/subscribe",
-    async (emailData: IEmailSubscribers, { rejectWithValue, getState, dispatch }) => {
+export const userSendEmail = createAsyncThunk(
+    "notification/mail",
+    async (emailData: IEmailSend, { rejectWithValue, getState, dispatch }) => {
         console.log(emailData);
         const config = {
             headers: {
@@ -31,22 +31,23 @@ export const userSubscribeForNews = createAsyncThunk(
     }
 );
 
+
 const notificationSlices = createSlice({
     name: "notification",
     initialState: {} as NotificationState,
     reducers: {},
     extraReducers: (builder) => {
         // Send email subscribe
-        builder.addCase(userSubscribeForNews.pending, (state, action) => {
+        builder.addCase(userSendEmail.pending, (state, action) => {
             state.loading = true;
             state.serverErr = undefined;
         });
-        builder.addCase(userSubscribeForNews.fulfilled, (state, action) => {
+        builder.addCase(userSendEmail.fulfilled, (state, action) => {
             state.emailSent = true;
             state.loading = false;
             state.serverErr = undefined;
         });
-        builder.addCase(userSubscribeForNews.rejected, (state, action) => {
+        builder.addCase(userSendEmail.rejected, (state, action) => {
             state.serverErr = action?.error?.message;
             state.loading = false;
         });

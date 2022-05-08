@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { userSubscribeForNews } from "../../../redux/modules/notification/slices/notification.slice";
+import {userSendEmail } from "../../../redux/modules/notification/slices/notification.slice";
 import { AppDispatch, RootState } from "../../../redux/modules/common/common.interface";
 import { NotificationState, EEmailOption, EEmailType } from "../../../redux/modules/notification/interfaces/notification.interface";
 
@@ -31,7 +31,8 @@ function Header() {
     },
     onSubmit: (values) => {
       values.text = `Subscriber email: ${values.from}`;
-      dispatch(userSubscribeForNews(values));
+      dispatch(userSendEmail(values));
+      formik.resetForm(); 
     },
     validationSchema: formSchema,
   });
