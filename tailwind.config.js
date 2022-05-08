@@ -205,7 +205,6 @@ module.exports = {
     },
     borderColor: (theme) => ({
       ...theme("colors"),
-      DEFAULT: "rgba(255, 255, 255, 0.16)",
     }),
     borderRadius: {
       none: "0",

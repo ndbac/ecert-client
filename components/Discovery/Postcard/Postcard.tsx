@@ -5,7 +5,6 @@ function Postcard() {
     return (
         <div className="w-full md:w-1/2 lg:w-1/3 p-3">
             <div className="p-6 border rounded-xl">
-
                 <div className="relative h-52 mb-6">
                     <span className="absolute top-0 right-0 mt-4 mr-4 text-xs text-white px-2 py-1 font-semibold bg-gray-600 bg-opacity-50 rounded-md uppercase">
                         Development
@@ -21,7 +20,7 @@ function Postcard() {
                 </span>
                 <Link href="/post/postId" passHref>
                     <h2 className="text-white mb-4 text-2xl font-semibold font-heading cursor-pointer">
-                        Lorem ipsum dolor sit amet consectutar
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     </h2>
                 </Link>
                 <p className="mb-4 text-white leading-relaxed">
