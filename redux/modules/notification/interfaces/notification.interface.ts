@@ -1,12 +1,3 @@
-export interface IEmailSubscribers {
-    from: string;
-    to: string;
-    subject: string;
-    text?: string;
-    html?: string;
-    option: EEmailOption;
-    type: EEmailType;
-}
 export interface IEmailSend {
     from: string;
     to: string;

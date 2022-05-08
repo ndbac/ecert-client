@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useDispatch, useSelector} from "react-redux";
 import {NotificationState, EEmailOption, EEmailType } from "../../redux/modules/notification/interfaces/notification.interface";
-import { userSubscribeForNews } from "../../redux/modules/notification/slices/notification.slice";
+import { userSendEmail } from "../../redux/modules/notification/slices/notification.slice";
 import { AppDispatch, RootState} from "../../redux/modules/common/common.interface";
 import { DEFAULT_EMAIL_ADDRESS, DEFAULT_EMAIL_CONTACT} from "../../utils/defaultValues";
 
@@ -38,7 +38,6 @@ function Contact() {
     },
     onSubmit: (values) => {
         const message:string = `Name: ${values.firstName} ${values.lastName}\nEmail: ${values.from}\nInfo: ${values.text}`
-        console.log(message);
         const data = {
           from : values.from,
           to: DEFAULT_EMAIL_ADDRESS,
@@ -47,7 +46,7 @@ function Contact() {
           option: EEmailOption.TEXT,
           type: EEmailType.NOTIFICATION,
         }
-        dispatch(userSubscribeForNews(data));
+        dispatch(userSendEmail(data));
         formik.resetForm(); 
     },
     validationSchema: formSchema,
