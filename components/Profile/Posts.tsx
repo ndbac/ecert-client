@@ -25,7 +25,7 @@ const Posts = () => {
                     className="px-6 py-4 text-sm font-semibold bg-yellow-400 hover:bg-yellow-500 rounded transition duration-200"
                     href="#"
                 >
-                    View More Articles
+                    View More Articles.
                 </a>
                 </div>
             </div>
