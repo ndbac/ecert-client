@@ -1,7 +1,7 @@
-import type { NextPage } from "next";
-import Navbar from "../components/Navigation/Navbar";
-import Register from "../components/Register/Register";
-import Footer from "../components/Footer/Footer";
+import type { NextPage } from 'next'
+import Navbar from '../components/Navigation/Navbar'
+import Register from '../components/Register/Register'
+import Footer from '../components/Footer/Footer'
 
 const RegisterPage: NextPage = () => {
   return (
@@ -10,7 +10,7 @@ const RegisterPage: NextPage = () => {
       <Register />
       <Footer />
     </div>
-  );
-};
+  )
+}
 
-export default RegisterPage;
+export default RegisterPage

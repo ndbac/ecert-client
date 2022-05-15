@@ -1,7 +1,7 @@
-import React from "react";
-import Header from "./Header/Header";
-import Features from "./Features/Features";
-import HowItWork from "./How it work/HowItWork";
+import React from 'react'
+import Header from './Header/Header'
+import Features from './Features/Features'
+import HowItWork from './How it work/HowItWork'
 
 function Homepage() {
   return (
@@ -10,7 +10,7 @@ function Homepage() {
       <Features />
       <HowItWork />
     </>
-  );
+  )
 }
 
-export default Homepage;
+export default Homepage

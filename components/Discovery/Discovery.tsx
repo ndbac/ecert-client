@@ -1,12 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
-import Image from "next/image";
+import Image from 'next/image'
 
-import ShadowBlueFull from "../../public/elements/shadow-blue-full.svg";
-import ShadowLight7 from "../../public/elements/shadow-light-7.svg";
+import ShadowBlueFull from '../../public/elements/shadow-blue-full.svg'
+import ShadowLight7 from '../../public/elements/shadow-light-7.svg'
 // import BlueDot from "../../public/icons/dots/blue-dot-left-bars.svg";
 // import YellowDot from "../../public/icons/dots/yellow-dot-right-shield.svg";
 
-import Postcard from './Postcard/Postcard';
+import Postcard from './Postcard/Postcard'
 
 function Discovery() {
   return (
@@ -60,7 +60,7 @@ function Discovery() {
         </div>
       </div>
     </section>
-  );
+  )
 }
 
-export default Discovery;
+export default Discovery

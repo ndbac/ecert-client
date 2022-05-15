@@ -1,7 +1,7 @@
-import type { NextPage } from "next";
-import Navbar from "../components/Navigation/Navbar";
-import Discovery from "../components/Discovery/Discovery";
-import Footer from "../components/Footer/Footer";
+import type { NextPage } from 'next'
+import Navbar from '../components/Navigation/Navbar'
+import Discovery from '../components/Discovery/Discovery'
+import Footer from '../components/Footer/Footer'
 
 const DiscoveryPage: NextPage = () => {
   return (
@@ -10,7 +10,7 @@ const DiscoveryPage: NextPage = () => {
       <Discovery />
       <Footer />
     </div>
-  );
-};
+  )
+}
 
-export default DiscoveryPage;
+export default DiscoveryPage

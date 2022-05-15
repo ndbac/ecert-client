@@ -1,11 +1,11 @@
-import Image from "next/image";
+import Image from 'next/image'
 
-import Logo from "../../public/logo/logo-boldui-light.svg";
-import Facebook from "../../public/brands/small-logos/facebook.svg";
-import Twitter from "../../public/brands/small-logos/twitter.svg";
-import Instagram from "../../public/brands/small-logos/instagram.svg";
-import Linkedin from "../../public/brands/small-logos/linkedin.svg";
-import Github from "../../public/brands/small-logos/github.svg";
+import Logo from '../../public/logo/logo-boldui-light.svg'
+import Facebook from '../../public/brands/small-logos/facebook.svg'
+import Twitter from '../../public/brands/small-logos/twitter.svg'
+import Instagram from '../../public/brands/small-logos/instagram.svg'
+import Linkedin from '../../public/brands/small-logos/linkedin.svg'
+import Github from '../../public/brands/small-logos/github.svg'
 
 function Footer() {
   return (
@@ -210,7 +210,7 @@ function Footer() {
         </div>
       </div>
     </section>
-  );
+  )
 }
 
-export default Footer;
+export default Footer

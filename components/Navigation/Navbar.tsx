@@ -1,11 +1,11 @@
-import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
+import Image from 'next/image'
+import Link from 'next/link'
+import { useState } from 'react'
 
-import Logo from "../../public/logo/logo-boldui-light.svg";
+import Logo from '../../public/logo/logo-boldui-light.svg'
 
 function Navbar() {
-  const [navBar, setNavBar] = useState(false);
+  const [navBar, setNavBar] = useState(false)
 
   return (
     <section className="relative bg-black overflow-hidden">
@@ -111,8 +111,8 @@ function Navbar() {
       <div
         className={
           navBar
-            ? "navbar-menu fixed top-0 left-0 bottom-0 w-5/6 max-w-sm z-50"
-            : "hidden navbar-menu fixed top-0 left-0 bottom-0 w-5/6 max-w-sm z-50"
+            ? 'navbar-menu fixed top-0 left-0 bottom-0 w-5/6 max-w-sm z-50'
+            : 'hidden navbar-menu fixed top-0 left-0 bottom-0 w-5/6 max-w-sm z-50'
         }
       >
         <div
@@ -249,7 +249,7 @@ function Navbar() {
         </nav>
       </div>
     </section>
-  );
+  )
 }
 
-export default Navbar;
+export default Navbar

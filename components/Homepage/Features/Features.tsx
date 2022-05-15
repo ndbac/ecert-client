@@ -1,10 +1,10 @@
-import Image from "next/image";
+import Image from 'next/image'
 
-import Elipse2 from "../../../public/elements/elipse2.svg";
+import Elipse2 from '../../../public/elements/elipse2.svg'
 
 function Features() {
   return (
-    <section className="py-20 md:py-32 bg-black" >
+    <section className="py-20 md:py-32 bg-black">
       <div className="container mx-auto px-4">
         <div className="max-w-md mx-auto mb-20 text-center">
           <span className="text-lg font-semibold text-blue-400">
@@ -144,7 +144,7 @@ function Features() {
         </div>
       </div>
     </section>
-  );
+  )
 }
 
-export default Features;
+export default Features

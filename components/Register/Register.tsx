@@ -1,71 +1,68 @@
-import { useState } from 'react';
-import Image from "next/image";
-import { useDispatch, useSelector } from "react-redux";
-import * as Yup from "yup";
-import { useRouter } from "next/router";
-import { useFormik } from "formik";
+import { useState } from 'react'
+import Image from 'next/image'
+import { useDispatch, useSelector } from 'react-redux'
+import * as Yup from 'yup'
+import { useRouter } from 'next/router'
+import { useFormik } from 'formik'
 import {
   AppDispatch,
   RootState,
-} from "../../redux/modules/common/common.interface";
-import { registerUserAction } from "../../redux/modules/auth/slices/auth.slice";
-import { IamNamespace } from "../../redux/modules/common/common.interface";
-import { AuthState } from "../../redux/modules/auth/interfaces/auth.interface";
+} from '../../redux/modules/common/common.interface'
+import { registerUserAction } from '../../redux/modules/auth/slices/auth.slice'
+import { IamNamespace } from '../../redux/modules/common/common.interface'
+import { AuthState } from '../../redux/modules/auth/interfaces/auth.interface'
 
-import ShadowBlueFull from "../../public/elements/shadow-blue-full.svg";
-import Ellipse from "../../public/elements/ellipse.svg";
+import ShadowBlueFull from '../../public/elements/shadow-blue-full.svg'
+import Ellipse from '../../public/elements/ellipse.svg'
 
 const formSchema = Yup.object({
   name: Yup.string()
-    .max(30, "Your last name must be lower than 30 characters")
-    .required("Please enter your name"),
+    .max(30, 'Your last name must be lower than 30 characters')
+    .required('Please enter your name'),
   email: Yup.string()
-    .email("Your email is not valid")
-    .required("Please enter your email address"),
+    .email('Your email is not valid')
+    .required('Please enter your email address'),
   password: Yup.string()
-    .min(
-      8,
-      "Password must be at least 8 characters"
-    )
+    .min(8, 'Password must be at least 8 characters')
     .matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
       message:
         'Password must contain uppercase letters and numbers or special characters',
     })
-    .required("Please enter your password"),
+    .required('Please enter your password'),
   confirmPassword: Yup.string()
     .oneOf(
-      [Yup.ref("password"), null],
-      "Confirm password is not equal to your password"
+      [Yup.ref('password'), null],
+      'Confirm password is not equal to your password'
     )
-    .required("Please enter your password again"),
-});
+    .required('Please enter your password again'),
+})
 
 function Register() {
-  const [accountType, setAccountType] = useState(IamNamespace.USER);
-  const dispatch = useDispatch<AppDispatch>();
+  const [accountType, setAccountType] = useState(IamNamespace.USER)
+  const dispatch = useDispatch<AppDispatch>()
   const formik = useFormik({
     initialValues: {
-      name: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
       namespace: accountType,
     },
     onSubmit: (values) => {
-      values.namespace = accountType;
-      dispatch(registerUserAction(values));
+      values.namespace = accountType
+      dispatch(registerUserAction(values))
     },
     validationSchema: formSchema,
-  });
+  })
 
   const storeData = useSelector<RootState>(
     (store) => store.authReducer
-  ) as AuthState;
-  const { loading, serverErr, registered } = storeData;
+  ) as AuthState
+  const { loading, serverErr, registered } = storeData
 
-  const router = useRouter();
+  const router = useRouter()
   if (registered) {
-    router.push(`/login`);
+    router.push(`/login`)
   }
 
   return (
@@ -190,57 +187,90 @@ function Register() {
               tool.
             </p>
             <form onSubmit={formik.handleSubmit}>
-              {serverErr &&
+              {serverErr && (
                 <p className="mb-8 text-lg text-yellow-600 font-semibold text-center">
                   Account already exists!
                 </p>
-              }
+              )}
               <p className="mb-3 font-semibold text-lg text-white ml-3">
                 Choose account type:
               </p>
               <div className="flex mb-5">
-                <button type="button" onClick={() => setAccountType(IamNamespace.USER)} className={accountType !== IamNamespace.USER ? "text-sm font-medium font-heading mr-2 inline-flex w-full items-center justify-center py-4 px-6 rounded-full bg-yellow-600" : "text-sm font-medium font-heading mr-2 inline-flex w-full items-center justify-center py-4 px-6 rounded-full bg-yellow-300 hover:bg-yellow-400 transform duration-200"}>
+                <button
+                  type="button"
+                  onClick={() => setAccountType(IamNamespace.USER)}
+                  className={
+                    accountType !== IamNamespace.USER
+                      ? 'text-sm font-medium font-heading mr-2 inline-flex w-full items-center justify-center py-4 px-6 rounded-full bg-yellow-600'
+                      : 'text-sm font-medium font-heading mr-2 inline-flex w-full items-center justify-center py-4 px-6 rounded-full bg-yellow-300 hover:bg-yellow-400 transform duration-200'
+                  }
+                >
                   User
                 </button>
-                <button type="button" onClick={() => setAccountType(IamNamespace.PROJECT)} className={accountType !== IamNamespace.PROJECT ? "text-sm font-medium font-heading ml-2 inline-flex w-full items-center justify-center py-4 px-6 rounded-full bg-yellow-600" : "text-sm font-medium font-heading ml-2 inline-flex w-full items-center justify-center py-4 px-6 rounded-full bg-yellow-300 hover:bg-yellow-400 transform duration-200"}>
+                <button
+                  type="button"
+                  onClick={() => setAccountType(IamNamespace.PROJECT)}
+                  className={
+                    accountType !== IamNamespace.PROJECT
+                      ? 'text-sm font-medium font-heading ml-2 inline-flex w-full items-center justify-center py-4 px-6 rounded-full bg-yellow-600'
+                      : 'text-sm font-medium font-heading ml-2 inline-flex w-full items-center justify-center py-4 px-6 rounded-full bg-yellow-300 hover:bg-yellow-400 transform duration-200'
+                  }
+                >
                   Organization
                 </button>
               </div>
-              <p className="mb-2 ml-6 text-yellow-600 font-semibold"> {formik.touched.email && formik.errors.email} </p>
+              <p className="mb-2 ml-6 text-yellow-600 font-semibold">
+                {' '}
+                {formik.touched.email && formik.errors.email}{' '}
+              </p>
               <input
                 className="w-full mb-4 py-4 px-6 bg-yellow-900 rounded-full border text-white outline-none placeholder-white"
                 type="email"
                 placeholder="Type your e-mail"
                 value={formik.values.email}
-                onChange={formik.handleChange("email")}
-                onBlur={formik.handleBlur("email")}
+                onChange={formik.handleChange('email')}
+                onBlur={formik.handleBlur('email')}
               />
-              <p className="mb-2 ml-6 text-yellow-600 font-semibold"> {formik.touched.name && formik.errors.name} </p>
+              <p className="mb-2 ml-6 text-yellow-600 font-semibold">
+                {' '}
+                {formik.touched.name && formik.errors.name}{' '}
+              </p>
               <input
                 className="w-full mb-4 py-4 px-6 bg-yellow-900 rounded-full border text-white outline-none placeholder-white"
                 type="text"
-                placeholder={accountType === IamNamespace.USER ? "Type your name" : "Type your organization"}
+                placeholder={
+                  accountType === IamNamespace.USER
+                    ? 'Type your name'
+                    : 'Type your organization'
+                }
                 value={formik.values.name}
-                onChange={formik.handleChange("name")}
-                onBlur={formik.handleBlur("name")}
+                onChange={formik.handleChange('name')}
+                onBlur={formik.handleBlur('name')}
               />
-              <p className="mb-2 ml-6 text-yellow-600 font-semibold"> {formik.touched.password && formik.errors.password} </p>
+              <p className="mb-2 ml-6 text-yellow-600 font-semibold">
+                {' '}
+                {formik.touched.password && formik.errors.password}{' '}
+              </p>
               <input
                 className="w-full mb-6 py-4 px-6 bg-yellow-900 rounded-full border text-white outline-none placeholder-white"
                 type="password"
                 placeholder="Enter password"
                 value={formik.values.password}
-                onChange={formik.handleChange("password")}
-                onBlur={formik.handleBlur("password")}
+                onChange={formik.handleChange('password')}
+                onBlur={formik.handleBlur('password')}
               />
-              <p className="mb-2 ml-6 text-yellow-600 font-semibold"> {formik.touched.confirmPassword && formik.errors.confirmPassword} </p>
+              <p className="mb-2 ml-6 text-yellow-600 font-semibold">
+                {' '}
+                {formik.touched.confirmPassword &&
+                  formik.errors.confirmPassword}{' '}
+              </p>
               <input
                 className="w-full mb-6 py-4 px-6 bg-yellow-900 rounded-full border text-white outline-none placeholder-white"
                 type="password"
                 placeholder="Re-type password"
                 value={formik.values.confirmPassword}
-                onChange={formik.handleChange("confirmPassword")}
-                onBlur={formik.handleBlur("confirmPassword")}
+                onChange={formik.handleChange('confirmPassword')}
+                onBlur={formik.handleBlur('confirmPassword')}
               />
               <label className="block mb-6 text-center" htmlFor="">
                 <span className="text-sm text-white">
@@ -253,8 +283,8 @@ function Register() {
               <button
                 className={
                   loading
-                    ? "inline-flex w-full items-center justify-center py-4 px-6 rounded-full bg-yellow-500"
-                    : "inline-flex w-full items-center justify-center py-4 px-6 rounded-full bg-yellow-200 hover:bg-yellow-400 transform duration-200"
+                    ? 'inline-flex w-full items-center justify-center py-4 px-6 rounded-full bg-yellow-500'
+                    : 'inline-flex w-full items-center justify-center py-4 px-6 rounded-full bg-yellow-200 hover:bg-yellow-400 transform duration-200'
                 }
                 type="submit"
               >
@@ -286,7 +316,7 @@ function Register() {
         </div>
       </div>
     </section>
-  );
+  )
 }
 
-export default Register;
+export default Register

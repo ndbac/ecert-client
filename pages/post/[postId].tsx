@@ -1,7 +1,7 @@
-import type { NextPage } from "next";
-import Navbar from "../../components/Navigation/Navbar";
-import Footer from "../../components/Footer/Footer";
-import Post from "../../components/Post/Post";
+import type { NextPage } from 'next'
+import Navbar from '../../components/Navigation/Navbar'
+import Footer from '../../components/Footer/Footer'
+import Post from '../../components/Post/Post'
 
 const PostDetail: NextPage = () => {
   return (
@@ -10,7 +10,7 @@ const PostDetail: NextPage = () => {
       <Post />
       <Footer />
     </div>
-  );
-};
+  )
+}
 
-export default PostDetail;
+export default PostDetail

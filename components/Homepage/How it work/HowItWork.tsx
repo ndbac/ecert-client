@@ -1,8 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
-import Image from "next/image";
+import Image from 'next/image'
 
-import ShadowBlueFull from "../../../public/elements/shadow-blue-full.svg";
-import Ellipse from "../../../public/elements/ellipse.svg";
+import ShadowBlueFull from '../../../public/elements/shadow-blue-full.svg'
+import Ellipse from '../../../public/elements/ellipse.svg'
 
 function HowItWork() {
   return (
@@ -126,7 +126,7 @@ function HowItWork() {
         </div>
       </div>
     </section>
-  );
+  )
 }
 
-export default HowItWork;
+export default HowItWork

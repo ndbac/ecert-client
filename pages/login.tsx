@@ -1,7 +1,7 @@
-import type { NextPage } from "next";
-import Navbar from "../components/Navigation/Navbar";
-import Login from "../components/Login/Login";
-import Footer from "../components/Footer/Footer";
+import type { NextPage } from 'next'
+import Navbar from '../components/Navigation/Navbar'
+import Login from '../components/Login/Login'
+import Footer from '../components/Footer/Footer'
 
 const LoginPage: NextPage = () => {
   return (
@@ -10,7 +10,7 @@ const LoginPage: NextPage = () => {
       <Login />
       <Footer />
     </div>
-  );
-};
+  )
+}
 
-export default LoginPage;
+export default LoginPage

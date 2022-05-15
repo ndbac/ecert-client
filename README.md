@@ -1,7 +1,9 @@
 # Introduction
+
 ThisisBac frontend services are responsible for all interface actions related to ThisisBac Blog with technical stack Next.js, Redux Toolkit, Tailwind CSS,...
 
 # Vercel Deployment Link
+
 https://thisisbac-client.vercel.app/
 
 # Project Setup Instructions
@@ -33,4 +35,5 @@ $ yarn run lint
 ```
 
 # Environment Variables
+
 Please contact Dev team
