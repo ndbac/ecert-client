@@ -31,11 +31,7 @@ const CategoryCreator = () => {
             token: ''
         },
         onSubmit: (values) => {
-<<<<<<< HEAD
             values.token = localStorage.getItem('token')!
-=======
-            values.token = 'U2FsdGVkX18YG1CMtFG8GnFBHS3+TSMXU6ud62/lmncngPeFcOVDFLynJFtP7o362sWe5Uw6xQF06OFV/GdtTz50NKMn9RKA2yxqGqjdegjEH7Fmf/vXS0SpN1vu9u8WdeQUj181NTyn0j2mf9lKIxBF70q1Hxr9glTbd3SfRAiHqNttdv0gVSVbNNhkmbZm2fxJHuoyxFhEmDcYB7sjeNj7pgap6OBiFFHcweewwPo1JC8Ll/1gMc75v52ZL9I0t9mB4nvGmE2eE/Y9VMuaM9n7Hyi/KyRvNKWnm9ltwa9L2EtHBdPznH1WlOiZl/RbZPEMt3yyzia9ndSvp9ofKd3xIU+RhOhIYYUMWJnKMMw='
->>>>>>> a867db7ea1643bdd0017fd0ead216ad4017400a2
             if (values.token) {
                 dispatch(postCategory(values))
             }
