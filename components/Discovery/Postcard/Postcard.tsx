@@ -6,7 +6,7 @@ import { ICategoryState } from '../../../redux/modules/category/interfaces/categ
 import { AppDispatch, RootState } from '../../../redux/modules/common/common.interface'
 import { useEffect } from 'react'
 import { getCategory } from '../../../redux/modules/category/slices/category.slice'
-
+import { formatDate } from '../../../utils/formatDate'
 
 const Postcard: React.FC<IPostCard> = (props) => {
   const categoryName = useSelector<RootState>(
@@ -26,13 +26,6 @@ const Postcard: React.FC<IPostCard> = (props) => {
     }
   }, [dispatch, props.categoryId])
 
-
-  // useEffect(() => {
-  //   const userId = props.userId
-  //   if (userId) {
-  //     dispatch(getUserDetail(userId))
-  //   }
-  // }, [dispatch])
   return (
     <div className="w-full md:w-1/2 lg:w-1/3 p-3">
       <div className="p-6 border rounded-xl">
@@ -49,7 +42,7 @@ const Postcard: React.FC<IPostCard> = (props) => {
           />
         </div>
         <span className="inline-block mb-4 text-xs text-white">
-          {props.createdAt} {props.userId}
+          {formatDate(props.createdAt)}
         </span>
         <Link href={`/post/${encodeURIComponent(props.postId)}`} passHref>
           <h2 className="text-white mb-4 text-2xl font-semibold font-heading cursor-pointer">

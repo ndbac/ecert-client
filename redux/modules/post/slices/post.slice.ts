@@ -4,11 +4,29 @@ import axios, { AxiosError } from 'axios'
 import { IPostGet, IPostState } from '../interface/post.interface'
 
 export const getPost = createAsyncThunk(
-    'user/post',
+    'user/post/get',
     async (data: IPostGet, { rejectWithValue }) => {
       try {
         const url = `${baseUrl}/user/post`
         const response = await axios.get(url, { params: data })
+        return response.data
+      } catch (error) {
+        const err = error as AxiosError | Error
+        if (axios.isAxiosError(err)) {
+          return rejectWithValue(err?.response?.data)
+        } else {
+          return rejectWithValue(err)
+        }
+      }
+    }
+  )
+
+  export const getPostDetail = createAsyncThunk(
+    'user/post',
+    async (postId: string | string[], { rejectWithValue }) => {
+      try {
+        const url = `${baseUrl}/user/post/${postId}`
+        const response = await axios.get(url)
         return response.data
       } catch (error) {
         const err = error as AxiosError | Error
@@ -33,13 +51,25 @@ export const postSlices = createSlice({
             })
             .addCase(getPost.fulfilled, (state, action) => {
                 state.loading = false
-                state.post = { ...action.payload }
                 state.list = [...action.payload]
                 state.serverErr = undefined
             })
             .addCase(getPost.rejected, (state, action) => {
                 state.serverErr = action?.error?.message
                 state.loading = false
+            })
+            .addCase(getPostDetail.pending, (state) => {
+              state.loading = true
+              state.serverErr = undefined
+            })
+            .addCase(getPostDetail.fulfilled, (state, action) => {
+              state.loading = false
+              state.post = action.payload
+              state.serverErr = undefined
+            })
+            .addCase(getPostDetail.rejected, (state, action) => {
+              state.serverErr = action?.error?.message
+              state.loading = false
             })
     }
 })

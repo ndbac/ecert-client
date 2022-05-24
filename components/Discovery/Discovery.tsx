@@ -36,20 +36,20 @@ function Discovery() {
   const handleLimit = () => {
     setLoad((load) => load + 6)
   }
-  const content = []
-  for (const post of list) {
-    content.push(
-      <Postcard
-        key={post._id}
-        createdAt={post.createdAt}
-        title={post.title}
-        photoUrl={post.photoUrl}
-        description={post.description}
-        postId={post._id}
-        categoryId={post.categoryId}
-        userId={post.userId}
-      />)
-  }
+  // const content = []
+  // for (const post of list) {
+  //   content.push(
+  //     <Postcard
+  //       key={post._id}
+  //       createdAt={post.createdAt}
+  //       title={post.title}
+  //       photoUrl={post.photoUrl}
+  //       description={post.description}
+  //       postId={post._id}
+  //       categoryId={post.categoryId}
+  //       userId={post.userId}
+  //     />)
+  // }
 
   return (
     <section className="relative py-20 bg-black">
@@ -86,7 +86,20 @@ function Discovery() {
           </p>
         </div>
         <div className="flex flex-wrap -m-3 mb-16">
-          {content}
+          {list?.map((post) => {
+            return(
+              <Postcard
+                key={post._id}
+                createdAt={post.createdAt}
+                title={post.title}
+                photoUrl={post.photoUrl}
+                description={post.description}
+                postId={post._id}
+                categoryId={post.categoryId}
+                userId={post.userId}
+              />
+            )
+          })}
         </div>
         <div className="text-center">
           <button
