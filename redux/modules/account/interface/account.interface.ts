@@ -6,6 +6,7 @@ export interface Account {
   verify: false
   photoUrl: string
   namespace: string
+  createdAt: string
 }
 export interface AccountState {
   user: Account

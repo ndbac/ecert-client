@@ -1,27 +1,66 @@
 /* eslint-disable react/no-unescaped-entities */
 import Image from 'next/image'
+import React, { useEffect } from 'react'
+import { IPost } from '../../redux/modules/post/interface/post.interface'
+import { getUserDetail } from '../../redux/modules/account/slices/account.slice'
+import { AccountState } from '../../redux/modules/account/interface/account.interface'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  AppDispatch,
+  RootState,
+} from '../../redux/modules/common/common.interface'
+import { ICategoryState } from '../../redux/modules/category/interfaces/category.interface'
+import { getCategory } from '../../redux/modules/category/slices/category.slice'
+import { formatDate } from '../../utils/formatDate'
 
 import Avatar from '../../public/blog/avatar.png'
 import ContentPhoto3 from '../../public/blog-content/content-photo3.jpg'
 
-function Post() {
+const Post: React.FC<IPost> = (props) => {
+  const account = useSelector<RootState>(
+    (state) => state.accountReducer
+  ) as AccountState
+  const { user } = account
+
+  const categoryName = useSelector<RootState>(
+    (state) => state.categoryReducer
+  ) as ICategoryState
+  const { category } = categoryName
+
+  const dispatch = useDispatch<AppDispatch>()
+  useEffect(() => {
+    const userId = props.userId
+    if (userId) {
+      dispatch(getUserDetail(userId))
+    }
+  }, [dispatch, props.userId])
+
+  useEffect(() => {
+    const categoryId = props.categoryId
+    if (categoryId) {
+      dispatch(getCategory(categoryId))
+    }
+  }, [dispatch, props.categoryId])
+
   return (
     <section className="py-16 md:py-24 bg-black">
       <div className="container px-4 mx-auto">
         <div className="md:max-w-6xl mx-auto mb-12 text-center">
           <div className="inline-block py-1 px-3 mb-6 text-xs leading-5 text-black font-medium uppercase bg-white rounded-full shadow-sm">
-            Technology
+            {category && (category.name)}
           </div>
           <div className="flex items-center justify-center">
-            <p className="inline-block text-white font-medium">John Doe</p>
+            <p className="inline-block text-white font-medium">
+              {user && (user.name)}
+            </p>
             <span className="mx-1 text-white">•</span>
-            <p className="inline-block text-white font-medium">19 Jan 2022</p>
+            <p className="inline-block text-white font-medium">{formatDate(props.createdAt)}</p>
           </div>
           <h2 className="text-white mb-4 text-3xl md:text-5xl leading-tight text-darkCoolGray-900 font-bold tracking-tighter">
-            Lorem ipsum dolor sit amet
+            {props.title}
           </h2>
           <p className="text-white mb-10 text-lg md:text-xl font-medium text-coolGray-500">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            {props.description}
           </p>
           <div className="text-white flex items-center justify-center text-left -mx-2">
             <div className="w-auto px-2">
@@ -29,10 +68,10 @@ function Post() {
             </div>
             <div className="w-auto px-2">
               <h4 className="text-base md:text-lg font-bold text-coolGray-800">
-                John Doe
+                {user && (user.name)}
               </h4>
               <p className="text-base md:text-lg text-coolGray-500">
-                12 October 2021
+                {user && (formatDate(user.createdAt))}
               </p>
             </div>
           </div>
