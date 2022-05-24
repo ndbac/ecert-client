@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import Image from 'next/image'
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { IPost } from '../../redux/modules/post/interface/post.interface'
 import { getUserDetail } from '../../redux/modules/account/slices/account.slice'
 import { AccountState } from '../../redux/modules/account/interface/account.interface'
@@ -24,7 +24,7 @@ const Post: React.FC<IPost> = (props) => {
     if (userId) {
       dispatch(getUserDetail(userId))
     }
-  }, [dispatch])
+  }, [dispatch, props.userId])
 
   return (
     <section className="py-16 md:py-24 bg-black">
@@ -34,7 +34,7 @@ const Post: React.FC<IPost> = (props) => {
             Technology
           </div>
           <div className="flex items-center justify-center">
-            <p className="inline-block text-white font-medium">John Doe</p>
+            <p className="inline-block text-white font-medium">{user.name}</p>
             <span className="mx-1 text-white">•</span>
             <p className="inline-block text-white font-medium">{props.createdAt}</p>
           </div>

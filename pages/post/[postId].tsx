@@ -4,11 +4,10 @@ import Footer from "../../components/Footer/Footer";
 import Post from "../../components/Post/Post";
 import Comment from "../../components/Comments/Comment";
 import {
-  AppDispatch,
   RootState,
 } from '../../redux/modules/common/common.interface'
-import { useDispatch, useSelector } from 'react-redux'
-import { IPost, IPostState } from "../../redux/modules/post/interface/post.interface";
+import { useSelector } from 'react-redux'
+import { IPostState } from "../../redux/modules/post/interface/post.interface";
 import { useRouter } from "next/router";
 
 const PostDetail: NextPage = () => {
@@ -30,6 +29,7 @@ const PostDetail: NextPage = () => {
         _id={post._id} 
         postId={postId}
         photoUrl={post.photoUrl}  
+        categoryId={post.categoryId}
         />
       <Comment />
       <Footer />

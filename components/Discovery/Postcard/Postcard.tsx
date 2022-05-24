@@ -1,14 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link'
 import { IPostCard } from '../../../redux/modules/post/interface/post.interface'
-import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { ICategoryState } from '../../../redux/modules/category/interfaces/category.interface'
 import { AppDispatch, RootState } from '../../../redux/modules/common/common.interface'
 import { useEffect } from 'react'
 import { getCategory } from '../../../redux/modules/category/slices/category.slice'
-import { AccountState } from '../../../redux/modules/account/interface/account.interface'
-import { getUserDetail } from '../../../redux/modules/account/slices/account.slice'
+
 
 const Postcard: React.FC<IPostCard> = (props) => {
   const categoryName = useSelector<RootState>(
@@ -26,7 +24,7 @@ const Postcard: React.FC<IPostCard> = (props) => {
     if (categoryId) {
       dispatch(getCategory(categoryId))
     }
-  }, [dispatch])
+  }, [dispatch, props.categoryId])
 
 
   // useEffect(() => {
@@ -53,7 +51,7 @@ const Postcard: React.FC<IPostCard> = (props) => {
         <span className="inline-block mb-4 text-xs text-white">
           {props.createdAt} {props.userId}
         </span>
-        <Link href={`/post/${encodeURIComponent(props.postId)}`}>
+        <Link href={`/post/${encodeURIComponent(props.postId)}`} passHref>
           <h2 className="text-white mb-4 text-2xl font-semibold font-heading cursor-pointer">
             {props.title}
           </h2>

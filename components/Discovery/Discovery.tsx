@@ -36,8 +36,8 @@ function Discovery() {
   const handleLimit = () => {
     setLoad((load) => load + 6)
   }
-  let content = []
-  for (let post of list) {
+  const content = []
+  for (const post of list) {
     content.push(
       <Postcard
         key={post._id}
