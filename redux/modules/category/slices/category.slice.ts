@@ -3,22 +3,23 @@ import baseUrl from '../../../../utils/baseUrl'
 import axios, { AxiosError } from 'axios'
 import {  ICategoryPost, ICategoryState } from "../interfaces/category.interface";
 
-// export const getCategory = createAsyncThunk(
-//     'creator/category',
-//     async (data: CategoryGet, { rejectWithValue }) => {
-//         try {
-//             const res = await axios.get(`${baseUrl}/user/category`)
-//             return res.data
-//         }   catch(error) {
-//             const err = error as AxiosError | Error
-//             if (axios.isAxiosError(err)) {
-//                 return rejectWithValue(err?.response?.data)
-//             } else {
-//                 return rejectWithValue(err)
-//             }
-//         }
-//     }
-// )
+export const getCategory = createAsyncThunk(
+    'user/category',
+    async (categoryId: string, { rejectWithValue }) => {
+        try {
+            const url = `${baseUrl}/user/category/${categoryId}`
+            const res = await axios.get(url)
+            return res.data
+        }   catch(error) {
+            const err = error as AxiosError | Error
+            if (axios.isAxiosError(err)) {
+                return rejectWithValue(err?.response?.data)
+            } else {
+                return rejectWithValue(err)
+            }
+        }
+    }
+)
 
 export const postCategory = createAsyncThunk(
     'creator/category/post',
@@ -103,19 +104,19 @@ export const categorySlice = createSlice({
     extraReducers: (builder) => {
         builder
             //get
-            // .addCase(getCategory.pending, (state) => {
-            //     state.loading = true
-            //     state.serverErr = undefined
-            // })
-            // .addCase(getCategory.fulfilled, (state, action) => {
-            //     state.loading = false
-            //     state.list = [...action.payload]
-            //     state.serverErr = undefined
-            // })
-            // .addCase(getCategory.rejected, (state, action) => {
-            //     state.serverErr = action?.error?.message
-            //     state.loading = false
-            // })
+            .addCase(getCategory.pending, (state) => {
+                state.loading = true
+                state.serverErr = undefined
+            })
+            .addCase(getCategory.fulfilled, (state, action) => {
+                state.loading = false
+                state.category = { ...action.payload }
+                state.serverErr = undefined
+            })
+            .addCase(getCategory.rejected, (state, action) => {
+                state.serverErr = action?.error?.message
+                state.loading = false
+            })
             //post
             .addCase(postCategory.pending, (state) => {
                 state.loading = true

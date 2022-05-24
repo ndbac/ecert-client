@@ -1,15 +1,16 @@
 export interface ICategory {
-    name: string,
-    slug: string,
-    photoUrl: string,
-    userId: string,
+    name: string
+    slug: string
+    photoUrl: string
+    userId: string
     postCount: string
 }
 
 export interface ICategoryState {
-    sent: boolean,
-    loading: boolean,
+    sent: boolean
+    loading: boolean
     serverErr: string | undefined
+    category: ICategory
 }
 
 // export interface ICategoryGet {
