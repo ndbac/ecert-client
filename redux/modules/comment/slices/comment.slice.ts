@@ -39,7 +39,7 @@ export const postComment = createAsyncThunk(
     }
     try {
       const res = await axios.post(`${baseUrl}/user/comment`, data, config)
-      console.log(res.data)
+
       return res.data
     } catch (error) {
       const err = error as AxiosError | Error
@@ -78,7 +78,6 @@ export const deleteComment = createAsyncThunk(
 export const updateComment = createAsyncThunk(
   'user/comment/update',
   async (data: CommentUpdate, { rejectWithValue }) => {
-    console.log(data)
     const config = {
       headers: {
         'Content-Type': 'application/json',
