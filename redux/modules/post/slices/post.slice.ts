@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import baseUrl from '../../../../utils/baseUrl'
 import axios, { AxiosError } from 'axios'
-import { IPostGet, IPostState } from '../interface/post.interface'
+import { IPostGet, IPostRandomGet, IPostState } from '../interface/post.interface'
 
 export const getPost = createAsyncThunk(
     'user/post/get',
@@ -9,6 +9,24 @@ export const getPost = createAsyncThunk(
       try {
         const url = `${baseUrl}/user/post`
         const response = await axios.get(url, { params: data })
+        return response.data
+      } catch (error) {
+        const err = error as AxiosError | Error
+        if (axios.isAxiosError(err)) {
+          return rejectWithValue(err?.response?.data)
+        } else {
+          return rejectWithValue(err)
+        }
+      }
+    }
+  )
+
+  export const getRandomPost = createAsyncThunk(
+    'user/post/random/get',
+    async (data: IPostRandomGet, { rejectWithValue }) => {
+      try {
+        const url = `${baseUrl}/user/post/random-posts/${data.quantity}`
+        const response = await axios.get(url)
         return response.data
       } catch (error) {
         const err = error as AxiosError | Error
@@ -70,6 +88,19 @@ export const postSlices = createSlice({
             .addCase(getPostDetail.rejected, (state, action) => {
               state.serverErr = action?.error?.message
               state.loading = false
+            })
+            .addCase(getRandomPost.pending, (state) => {
+              state.loading = true
+              state.serverErr = undefined
+            })
+            .addCase(getRandomPost.fulfilled, (state, action) => {
+                state.loading = false
+                state.list = [...action.payload]
+                state.serverErr = undefined
+            })
+            .addCase(getRandomPost.rejected, (state, action) => {
+                state.serverErr = action?.error?.message
+                state.loading = false
             })
     }
 })

@@ -23,6 +23,11 @@ export interface IPostGet {
     sort?: boolean
     page?: number
     limit?: number
+    searchText?: string
+}
+
+export interface IPostRandomGet {
+    quantity: number
 }
 
 export interface IPostState {
