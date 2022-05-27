@@ -15,6 +15,7 @@ import Placeholder2 from '../../public/images/placeholder2.png'
 import Placeholder3 from '../../public/images/placeholder3.png'
 import ShadowLight7 from '../../public/elements/shadow-light-7.svg'
 import PhotoWomen from '../../public/images/photo-women.png'
+import Link from 'next/link'
 
 const formSchema = Yup.object({
   email: Yup.string()
@@ -113,6 +114,13 @@ function Login() {
                     ></path>
                   </svg>
                 </button>
+              </div>
+              <div className="mb-4">
+                <Link href="/reset-password">
+                  <a className="text-yellow-500  hover:underline">
+                    Forgot Password?
+                  </a>
+                </Link>
               </div>
 
               <button
