@@ -1,7 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import baseUrl from '../../../../utils/baseUrl'
 import axios, { AxiosError } from 'axios'
-import { IVerifyData, IVerifyAccountState } from '../interface/verify.interface'
+import {
+  IVerifyData,
+  IVerifyAccountState,
+  IVerifyPassword,
+  IPasswordData,
+} from '../interface/verify.interface'
 
 export const createVerifyAccountToken = createAsyncThunk(
   'create/verify',
@@ -50,6 +55,44 @@ export const verifyToken = createAsyncThunk(
     }
   }
 )
+export const createResetPasswordToken = createAsyncThunk(
+  'passwordToken',
+  async (data: IPasswordData, { rejectWithValue }) => {
+    try {
+      const res = await axios.put(
+        `${baseUrl}/verify/createResetPasswordToken`,
+        data
+      )
+      return res.data.status
+    } catch (error) {
+      const err = error as AxiosError | Error
+      if (axios.isAxiosError(err)) {
+        return rejectWithValue(err?.response?.data)
+      } else {
+        return rejectWithValue(err)
+      }
+    }
+  }
+)
+export const resetPassword = createAsyncThunk(
+  'passwordReset',
+  async (data: IVerifyPassword, { rejectWithValue }) => {
+    try {
+      const res = await axios.put(
+        `${baseUrl}/verify/reset-password/${data.token}`,
+        data.data
+      )
+      return res.data.status
+    } catch (error) {
+      const err = error as AxiosError | Error
+      if (axios.isAxiosError(err)) {
+        return rejectWithValue(err?.response?.data)
+      } else {
+        return rejectWithValue(err)
+      }
+    }
+  }
+)
 
 export const verifySlices = createSlice({
   name: 'verify-account',
@@ -70,7 +113,6 @@ export const verifySlices = createSlice({
         state.serverErr = action?.error?.message
         state.loading = false
       })
-
       .addCase(verifyToken.pending, (state) => {
         state.loading = true
         state.serverErr = undefined
@@ -81,6 +123,32 @@ export const verifySlices = createSlice({
         state.status = action.payload
       })
       .addCase(verifyToken.rejected, (state, action) => {
+        state.serverErr = action?.error?.message
+        state.loading = false
+      })
+      .addCase(createResetPasswordToken.pending, (state) => {
+        state.loading = true
+        state.serverErr = undefined
+      })
+      .addCase(createResetPasswordToken.fulfilled, (state, action) => {
+        state.serverErr = undefined
+        state.loading = false
+        state.status = action.payload
+      })
+      .addCase(createResetPasswordToken.rejected, (state, action) => {
+        state.serverErr = action?.error?.message
+        state.loading = false
+      })
+      .addCase(resetPassword.pending, (state) => {
+        state.loading = true
+        state.serverErr = undefined
+      })
+      .addCase(resetPassword.fulfilled, (state, action) => {
+        state.serverErr = undefined
+        state.loading = false
+        state.status = action.payload
+      })
+      .addCase(resetPassword.rejected, (state, action) => {
         state.serverErr = action?.error?.message
         state.loading = false
       })
